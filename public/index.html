@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hero chat !</title>
+</head>
+<body>
+	<section id="chatrooms">
+		
+	</section>
+
+	<section id="room-page">
+		<div id="room-messages">
+		</div>
+		<input type="text" name="message" id="message" />
+	</section>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/app.js"></script>
+	<script>
+		window.onload = function() {
+			var app = new App();
+			app.start();
+		}
+	</script>
+</body>
+</html>
