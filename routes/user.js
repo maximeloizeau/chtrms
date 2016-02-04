@@ -6,7 +6,7 @@ module.exports = function() {
     return [
         {
             method: 'GET',
-            path: '/users/me/',
+            path: '/api/users/me/',
             config : {
                 handler: userController.me
             }

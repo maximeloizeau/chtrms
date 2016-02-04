@@ -6,21 +6,21 @@ module.exports = function() {
     return [
         {
             method: 'POST',
-            path: '/login',
+            path: '/api/login',
             config : {
                 handler: authController.login
             }
         },
         {
             method: 'POST',
-            path: '/users',
+            path: '/api/users',
             config : {
                 handler: authController.signup
             }
         },
         {
             method: 'POST',
-            path: '/logout',
+            path: '/api/logout',
             config : {
                 handler: authController.logout
             }
