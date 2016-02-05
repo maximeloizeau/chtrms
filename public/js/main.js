@@ -37,7 +37,7 @@ var RoomsView = new Vue({
     el: '#rooms',
     data: {
         shared: store.state,
-        roomName: 'test'
+        roomName: ''
     },
     methods: roomController
 });
@@ -57,5 +57,8 @@ var ChatView = new Vue({
 
 
 var App = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        shared: store.state
+    },
 });
