@@ -1,10 +1,17 @@
 var Vue = require('vue');
-var VueRouter = require('vue-router');
-Vue.use(VueRouter);
+var request = require('browser-request');
+
+var userController = require('./controllers/user.js');
+var roomController = require('./controllers/room.js');
+var chatController = require('./controllers/chat.js');
 
 var store = {
   state: {
-    message: 'Hello!'
+    user: undefined,
+    room: undefined,
+    rooms: undefined,
+    socket: undefined,
+    messages: []
   },
   actionA: function () {
     this.state.message = 'action A triggered'
@@ -15,25 +22,40 @@ var store = {
 }
 
 // Define some components
-var Login = Vue.extend({
-    template: '<section id="login">login</section>'
-});
-
-var RoomsList  = Vue.extend({
-    template: '<section id="chatrooms">chatrooms</section>'
-});
-
-var App = Vue.extend({});
-
-var router = new VueRouter();
-
-router.map({
-    '/login': {
-        component: Login
+var UserView = new Vue({
+    el: '#user',
+    data: {
+        shared: store.state,
+        loginUsername: 'm@m.com',
+        loginPassword: 'mm'
     },
-    '/rooms': {
-        component: RoomsList
+    methods: userController
+});
+
+
+var RoomsView = new Vue({
+    el: '#rooms',
+    data: {
+        shared: store.state,
+        roomName: 'test'
+    },
+    methods: roomController
+});
+RoomsView.$watch('shared.user', function(val) {
+    if(val !== undefined) {
+        roomController.populateRooms(store.state);
     }
 });
 
-router.start(App, '#app')
+var ChatView = new Vue({
+    el: '#chatroom',
+    data: {
+        shared: store.state
+    },
+    methods: chatController
+});
+
+
+var App = new Vue({
+    el: '#app'
+});

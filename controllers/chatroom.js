@@ -16,7 +16,7 @@ module.exports = {
         ChatRoom
         .find()
         .then(chatrooms => {
-            let chatroomsSanitized = chatrooms.map(c => { return c.format(); }):
+            let chatroomsSanitized = chatrooms.map(c => { return c.format(); });
 
             return reply(chatroomsSanitized);
         }, err => {

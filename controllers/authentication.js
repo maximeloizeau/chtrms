@@ -31,6 +31,7 @@ let logUserIn = function(email, hash, reply) {
                     return reply(savedUser.formatWithToken());
                 },
                 err => {
+                    console.log("OK");
                     return loginFailed(reply);
                 }
             );
@@ -53,7 +54,7 @@ module.exports = {
     },
 
     signup: function(request, reply) {
-        const username = request.payload.lastname;
+        const username = request.payload.username;
         const email = request.payload.email;
         const password = cryptPassword(request.payload.password);
         
