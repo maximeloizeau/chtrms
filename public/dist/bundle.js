@@ -10189,6 +10189,7 @@ function sendMessage(event) {
 	if(!this.shared.socket) return;
 
 	this.shared.socket.emit('message', { text: this.chatMessageText, token: this.shared.user.token, room: this.shared.room });
+	this.chatMessageText = '';
 }
 
 module.exports = {
@@ -10216,7 +10217,11 @@ function create(event) {
             return;
         }
 
-            console.log(self);
+        // If we don't have an active connection, we add the room ourselves
+        if(!self.shared.socket) {
+            self.shared.rooms.push(self.roomName);
+        }
+
         self.roomName = '';
     }
 }
@@ -10256,14 +10261,18 @@ function join(roomName) {
     this.shared.socket = socket;
     this.shared.room = roomName;
 
-    /*socket.on('connection', function(s){
-        console.log("Connected", s, s === socket);
-    });*/
     socket.on('message', function(data) {
         if(data && data.text) {
             self.shared.messages.push(data);
         }
     });
+
+    socket.on('new room', function(data) {
+        if(data && data.name) {
+            self.shared.rooms.push(data);
+        }
+    });
+
     socket.emit('join', { roomName: roomName, token: self.shared.user.token });
 }
 
@@ -10364,7 +10373,7 @@ var RoomsView = new Vue({
     el: '#rooms',
     data: {
         shared: store.state,
-        roomName: 'test'
+        roomName: ''
     },
     methods: roomController
 });
@@ -10384,6 +10393,9 @@ var ChatView = new Vue({
 
 
 var App = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        shared: store.state
+    },
 });
 },{"./controllers/chat.js":4,"./controllers/room.js":5,"./controllers/user.js":6,"browser-request":1,"vue":3}]},{},[7]);

@@ -57,6 +57,8 @@ server.on('response', function (request) {
 
 // Middleware to check authentication (if token provided by client)
 server.ext('onRequest', function (request, reply) {
+    request.app.io = io;
+
     if(!request.headers.token) {
         request.app.authenticated = false;
         return reply.continue();
