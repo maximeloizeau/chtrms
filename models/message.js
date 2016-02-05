@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 
 let messageSchema = mongoose.Schema({
 	creationDate: 	Date,
-	_user: 			mongoose.Schema.Types.ObjectId,
+	text: 			String,
+	_user: 			{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	_chatroom: 		mongoose.Schema.Types.ObjectId
 });
 

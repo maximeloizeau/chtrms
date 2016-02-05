@@ -17,6 +17,13 @@ module.exports = function() {
             config: {
                 handler: chatroomController.getAll
             }
+        },
+        {
+            method: 'GET',
+            path: '/api/rooms/{roomName}/messages',
+            config: {
+                handler: chatroomController.getMessages
+            }
         }
     ];
 }();
