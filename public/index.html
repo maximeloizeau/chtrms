@@ -9,20 +9,19 @@
         <div id="user">
             <div id="logo"></div>
             <div id="login-box" v-show="shared.user === undefined">
-                <input type="text" v-model="loginUsername" placeholder="username" />
-                <input type="password" v-model="loginPassword" placeholder="password" />
-                <button v-on:click="login">Login</button>
+                <input type="text" v-model="loginUsername" placeholder="username" v-on:keyup.enter="login" />
+                <input type="password" v-model="loginPassword" placeholder="password" v-on:keyup.enter="login" />
             </div>
             <div id="user-profile" v-show="shared.user !== undefined">
                 <span class="username">{{ shared.user.username }}</span>
+                <span class="username">({{ shared.user.email }})</span>
                 <button v-on:click="logout">Logout</button>             
             </div>
         </div>
-
+        <div id="login-overlay" v-show="shared.user === undefined"><h1>Please login to continue</h1></div>
         <div id="rooms">
             <div id="create-room">
-                <input type="text" v-model="roomName" placeholder="room name" />
-                <button v-on:click="createRoom">Create</button>
+                <input type="text" v-model="roomName" v-on:keyup.enter="createRoom" placeholder="create room" />
             </div>
             <div id="rooms-list">
                 <span class="rooms-title">Rooms</span>
@@ -34,15 +33,17 @@
             </div>
         </div>
 
+        <div id="room-overlay" v-show="shared.user !== undefined && shared.room === undefined"><h1>And now pick a chatroom</h1></div>
         <div id="chatroom">
+            <div id="chatroom-title">Room <span class="bold">{{ shared.room }}</span></div>
             <div id="chatroom-messages">
-                <div v-for="message in shared.messages">
-                    {{ message.text }}
+                <div v-for="message in shared.messages" title="{{ message.date }}">
+                    <span class="message-author">{{ message.user }}</span>
+                    <span class="message-content">{{ message.text }}</span>
                 </div>
             </div>
             <div id="chatroom-input">
-                <input type="text" v-model="chatMessageText" placeholder="Message" />
-                <button v-on:click="sendMessage">Send</button> 
+                <input type="text" v-model="chatMessageText" v-on:keyup.enter="sendMessage" placeholder="Message" />
             </div>
         </div>
     </div>

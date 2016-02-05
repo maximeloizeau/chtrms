@@ -13,6 +13,10 @@ div#app {
     background-color: #1F242B;
 }
 
+div#user {
+	padding-right: 10px;
+}
+
 div#logo {
     width: 20%;
     height: 76px;
@@ -24,24 +28,61 @@ div#logo {
 
 div#login-box {
 	float: right;
-    width: 79%;
+    width: 70%;
     display: inline-block;
     text-align: right;
+    line-height: 80px;
+    margin-right: 10px;
 }
 
 div#user-profile {
 	float: right;
-    width: 79%;
+    width: 70%;
     display: inline-block;
     text-align: right;
+    line-height: 80px;
+    margin-right: 10px;
+}
+
+span.username {
+    color: lightgrey;
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+span.email {
+	color: lightgrey;
+	padding-right: 20px;
+}
+
+div#user-profile button {
+    width: 90px;
+    height: 2px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
+    line-height: 2px;
+    cursor: pointer;
 }
 
 div#rooms {
     background-color: #14181B;
 }
 
-div#rooms input[type="text"] {
+input {
 	width: 90px;
+	height: 2px;
+	padding: 10px;
+	border: none;
+	border-bottom: solid 2px #c9c9c9;
+	-webkit-transition: border 0.3s;
+	-moz-transition: border 0.3s;
+	-o-transition: border 0.3s;
+	transition: border 0.3s;
 }
 
 div#rooms button {
@@ -50,7 +91,9 @@ div#rooms button {
 
 div#create-room {
     width: 15%;
+    height: 50px;
     float: right;
+    line-height: 50px;
 }
 
 div#rooms-list {
@@ -65,15 +108,24 @@ div#rooms-list {
 
 ul.rooms-list {
 	display: inline-block;
+    padding: 0;
+    margin: 0 0 0 10px;
+    height: 100%;
 }
 
 ul.rooms-list li {
-	display: inline;
-    background-color: #25B989;
-    padding: 2px;
+	display: inline-block;
+    background-color: #1E8E6A;
+    padding: 0 5px;
     margin-right: 5px;
-    border-radius: 4px;
     cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    box-shadow: inset 0 8px 8px -8px #3E3E3E, inset 0 -8px 8px -8px #3E3E3E;
+}
+
+ul.rooms-list li:hover {
+    background-color: #19805F;
 }
 
 div#chatroom {
@@ -81,9 +133,17 @@ div#chatroom {
     height: calc(100% - 80px - 50px);
 }
 
+div#chatroom-title {
+    height: 40px;
+    line-height: 40px;
+    color: #1F242B;
+    background-color: #25B989;
+    padding: 0 10px;
+}
+
 #chatroom-messages {
     width: 100%;
-    height: calc(100% - 50px);
+    height: calc(100% - 50px - 40px);
     display: flex;
     flex-direction: column;
     align-items: baseline;
@@ -91,6 +151,66 @@ div#chatroom {
     color: lightgrey;
 }
 
+#chatroom-messages div {
+    margin-left: 10px;
+}
+
+span.message-author {
+    color: grey;
+}
+
+span.message-author:after {
+    content: ' ~';
+}
+
 #chatroom-input {
     height: 50px;
+    line-height: 50px;
+    padding: 0 10px;
+}
+
+#chatroom-input input {
+	width: calc(100% - 20px);
+}
+
+div#login-overlay {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 80px);
+    max-width: 800px;
+    margin: auto;
+    background-color: #3B6479;
+    opacity: 0.5;
+    display: table;
+    text-align: center;
+    top: 80px;
+}
+
+div#login-overlay h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: #25B989;
+}
+
+div#room-overlay {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 80px - 50px);
+    max-width: 800px;
+    margin: auto;
+    background-color: #3B6479;
+    opacity: 0.5;
+    display: table;
+    text-align: center;
+    top: 130px;
+}
+
+div#room-overlay h1 {
+    display: table-cell;
+    vertical-align: middle;
+    color: #25B989;
+}
+
+.bold {
+	font-weight: bold;
 }
