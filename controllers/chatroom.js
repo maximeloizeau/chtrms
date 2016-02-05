@@ -46,6 +46,7 @@ module.exports = {
                 createdRoom.save()
                 .then(
                     savedRoom => {
+                        request.app.io.emit('new room', { name: savedRoom.name });
                         return reply(savedRoom);
                     },
                     err => {

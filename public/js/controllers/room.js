@@ -19,7 +19,11 @@ function create(event) {
             return;
         }
 
-            console.log(self);
+        // If we don't have an active connection, we add the room ourselves
+        if(!self.shared.socket) {
+            self.shared.rooms.push(self.roomName);
+        }
+
         self.roomName = '';
     }
 }
@@ -59,14 +63,18 @@ function join(roomName) {
     this.shared.socket = socket;
     this.shared.room = roomName;
 
-    /*socket.on('connection', function(s){
-        console.log("Connected", s, s === socket);
-    });*/
     socket.on('message', function(data) {
         if(data && data.text) {
             self.shared.messages.push(data);
         }
     });
+
+    socket.on('new room', function(data) {
+        if(data && data.name) {
+            self.shared.rooms.push(data);
+        }
+    });
+
     socket.emit('join', { roomName: roomName, token: self.shared.user.token });
 }
 
