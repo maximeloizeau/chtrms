@@ -9,7 +9,7 @@ const authMiddleware = require('./middlewares/auth');
 const socketMessagesController = require('./controllers/socket_message.js');
 const routes = require('./routes')
 
-// Create a server with a host and port
+// Create server with configuration relative to static files delivering
 const server = new Hapi.Server({
     connections: {
         routes: {
@@ -19,6 +19,7 @@ const server = new Hapi.Server({
         }
     }
 });
+// Connect with a host and port
 server.connection({ 
     host: config.host, 
     port: config.port 

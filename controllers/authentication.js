@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/app');
 const User = require('../models/user');
 
+// Encrypt password with app salt
 let cryptPassword = function(password) {
     return crypto.createHash('sha256').update(password + config.secret).digest('hex');
 }
@@ -15,6 +16,7 @@ let loginFailed = function(reply) {
     return reply(Boom.unauthorized('Login failed'));
 }
 
+// Check user credentials, create jwt and return user object
 let logUserIn = function(email, hash, reply) {
     User.findOne({ 'email': email, 'password': hash })
     .then(user => {

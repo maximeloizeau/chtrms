@@ -77,7 +77,7 @@ module.exports = {
             .sort({ 'creationDate': 'asc' })
             .limit(30)
             .then(messages => {
-                console.log(messages);
+                // Format messages to return only interesting data
                 var formattedMessages = messages.map(m => {
                     return {
                         date: m.creationDate,
