@@ -11,12 +11,14 @@
             <div id="login-box" v-show="shared.user === undefined && displayRegistration === false">
                 <input type="text" v-model="loginEmail" placeholder="email" v-on:keyup.enter="login" />
                 <input type="password" v-model="loginPassword" placeholder="password" v-on:keyup.enter="login" />
-                <span class="open-registration" v-on:click="openRegistration">Register ?</span>
+                <button class="validate" v-on:click="login"></button>
+                <span class="open-registration" v-on:click="openRegistration"> [Register]</span>
             </div>
             <div id="registration-box" v-show="displayRegistration === true">
                 <input type="text" v-model="registerUsername" placeholder="username" />
                 <input type="email" v-model="registerEmail" placeholder="email" />
                 <input type="password" v-model="registerPassword" placeholder="password" v-on:keyup.enter="register" />
+                <button class="validate" v-on:click="register"></button>
             </div>
 
             <div id="user-profile" v-show="shared.user !== undefined">
@@ -29,6 +31,7 @@
         <div id="rooms">
             <div id="create-room">
                 <input type="text" v-model="roomName" v-on:keyup.enter="createRoom" placeholder="create room" />
+                <button class="validate" v-on:click="createRoom"></button>
             </div>
             <div id="rooms-list">
                 <span class="rooms-title">Rooms</span>

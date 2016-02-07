@@ -1,8 +1,8 @@
 body,html {
-	background-color: #14181b;
-	font-family: Arial;
-	margin: 0;
-	height: 100%;
+    background-color: #14181b;
+    font-family: Arial;
+    margin: 0;
+    height: 100%;
 }
 
 div#app {
@@ -14,7 +14,7 @@ div#app {
 }
 
 div#user {
-	padding-right: 10px;
+    padding-right: 10px;
 }
 
 div#logo {
@@ -27,12 +27,26 @@ div#logo {
 }
 
 div#login-box, div#registration-box {
-	float: right;
+    float: right;
     width: 70%;
     display: inline-block;
     text-align: right;
     line-height: 80px;
     margin-right: 10px;
+}
+
+button.validate {
+    background-image: url('../img/validate.png');
+    background-size: 80%;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: white;
+    border: solid 2px #c9c9c9;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: 6px;
 }
 
 span.open-registration {
@@ -47,7 +61,7 @@ span.open-registration:hover {
 }
 
 div#user-profile {
-	float: right;
+    float: right;
     width: 70%;
     display: inline-block;
     text-align: right;
@@ -62,8 +76,8 @@ span.username {
 }
 
 span.email {
-	color: lightgrey;
-	padding-right: 20px;
+    color: lightgrey;
+    padding-right: 20px;
 }
 
 div#user-profile button {
@@ -85,23 +99,19 @@ div#rooms {
 }
 
 input {
-	width: 90px;
-	height: 2px;
-	padding: 10px;
-	border: none;
-	border-bottom: solid 2px #c9c9c9;
-	-webkit-transition: border 0.3s;
-	-moz-transition: border 0.3s;
-	-o-transition: border 0.3s;
-	transition: border 0.3s;
-}
-
-div#rooms button {
-	width: 90px;
+    width: 90px;
+    height: 2px;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
 }
 
 div#create-room {
-    width: 15%;
+    width: 140px;
     height: 50px;
     float: right;
     line-height: 50px;
@@ -109,23 +119,27 @@ div#create-room {
 
 div#rooms-list {
     height: 50px;
-    width: 85%;
+    width: calc(100% - 140px);
 }
 
 .rooms-title {
-	color: #B3B3B3;
+    color: #B3B3B3;
     margin-left: 8px;
+    width: 70px;
+    height: 50px;
+    line-height: 50px;
 }
 
 ul.rooms-list {
-	display: inline-block;
+    display: inline-block;
     padding: 0;
     margin: 0 0 0 10px;
     height: 100%;
+    width: calc(100% - 80px);
 }
 
 ul.rooms-list li {
-	display: inline-block;
+    display: inline-block;
     background-color: #1E8E6A;
     padding: 0 5px;
     margin-right: 5px;
@@ -181,7 +195,7 @@ span.message-author:after {
 }
 
 #chatroom-input input {
-	width: calc(100% - 20px);
+    width: calc(100% - 20px);
 }
 
 div#login-overlay {
@@ -195,6 +209,7 @@ div#login-overlay {
     display: table;
     text-align: center;
     top: 80px;
+    z-index: 100;
 }
 
 div#login-overlay h1 {
@@ -214,6 +229,7 @@ div#room-overlay {
     display: table;
     text-align: center;
     top: 130px;
+    z-index: 100;
 }
 
 div#room-overlay h1 {
@@ -223,5 +239,5 @@ div#room-overlay h1 {
 }
 
 .bold {
-	font-weight: bold;
+    font-weight: bold;
 }

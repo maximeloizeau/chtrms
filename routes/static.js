@@ -18,6 +18,13 @@ module.exports = function() {
         },
         {
             method: '*',
+            path: '/img/validate.png',
+            handler: {
+               file: './img/validate.png'
+            }
+        },
+        {
+            method: '*',
             path: '/css/main.css',
             handler: {
                file: './css/main.css'
