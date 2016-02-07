@@ -31,6 +31,10 @@ module.exports = {
         }
 
         const name = request.payload.name;
+
+        if(name === '') {
+            return reply(Boom.badRequest('Field cannot be empty'));
+        }
         
         ChatRoom
         .findOne({ 'name': name })

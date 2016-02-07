@@ -59,6 +59,10 @@ module.exports = {
         const username = request.payload.username;
         const email = request.payload.email;
         const password = cryptPassword(request.payload.password);
+
+        if(username === '' || email === '' || request.payload.password === '') {
+            return reply(Boom.badRequest('Fields cannot be empty'));
+        }
         
         User.findOne({ 'email': email })
         .then(user => {

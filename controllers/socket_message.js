@@ -14,7 +14,7 @@ function setup(endpoint, socket) {
 }
 
 function messageReceived(endpoint, socket, message) {
-    if(!message || !message.token || !message.text) {
+    if(!message || !message.token || !message.text || message.text === '') {
         // TODO return error message to user
         return;
     }
