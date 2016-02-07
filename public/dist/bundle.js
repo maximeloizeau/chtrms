@@ -10317,7 +10317,7 @@ function login(event) {
 		method:'POST',
 		url:'/api/login',
 		json: {
-			email: this.loginUsername,
+			email: this.loginEmail,
 			password: this.loginPassword
 		}
 	}, checkLogin);
@@ -10333,6 +10333,45 @@ function login(event) {
 			self.shared.user = data;
 		}
 	}
+
+
+	this.loginEmail = '';
+	this.loginPassword = '';
+}
+
+function openRegistration(event) {
+	this.displayRegistration = true;
+}
+
+function register(event) {
+	var self = this;
+
+	request({
+		method:'POST',
+		url:'/api/users',
+		json: {
+			email: this.registerEmail,
+			username: this.registerUsername,
+			password: this.registerPassword
+		}
+	}, checkRegistration);
+
+	function checkRegistration(err, response) {
+		if(err) {
+			console.err(err);
+			return;
+		}
+
+		var data = response.body;
+		if(data && data.token) {
+			self.displayRegistration = false;
+			self.shared.user = data;
+		}
+	}
+
+	this.registerEmail = '';
+	this.registerUsername = '';
+	this.registerPassword = '';
 }
 
 function logout(event) {
@@ -10352,12 +10391,18 @@ function logout(event) {
 		}
 
 		model.user = undefined;
+		model.socket.disconnect();
+		model.rooms = [];
+		model.room = undefined;
+		model.messages = [];
 	}
 }
 
 module.exports = {
 	login: login,
-	logout: logout
+	logout: logout,
+	openRegistration: openRegistration,
+	register: register
 };
 },{"browser-request":1}],7:[function(require,module,exports){
 var Vue = require('vue');
@@ -10374,12 +10419,6 @@ var store = {
     rooms: undefined,
     socket: undefined,
     messages: []
-  },
-  actionA: function () {
-    this.state.message = 'action A triggered'
-  },
-  actionB: function () {
-    this.state.message = 'action B triggered'
   }
 }
 
@@ -10388,8 +10427,9 @@ var UserView = new Vue({
     el: '#user',
     data: {
         shared: store.state,
-        loginUsername: 'm@m.com',
-        loginPassword: 'mm'
+        loginEmail: '',
+        loginPassword: '',
+        displayRegistration: false
     },
     methods: userController
 });

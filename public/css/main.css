@@ -26,13 +26,24 @@ div#logo {
     display: inline-block;
 }
 
-div#login-box {
+div#login-box, div#registration-box {
 	float: right;
     width: 70%;
     display: inline-block;
     text-align: right;
     line-height: 80px;
     margin-right: 10px;
+}
+
+span.open-registration {
+    color: lightgrey;
+    font-size: 0.8em;
+    font-style: italic;
+    cursor: pointer;
+}
+
+span.open-registration:hover {
+    color: grey;
 }
 
 div#user-profile {

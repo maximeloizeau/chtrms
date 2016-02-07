@@ -12,12 +12,6 @@ var store = {
     rooms: undefined,
     socket: undefined,
     messages: []
-  },
-  actionA: function () {
-    this.state.message = 'action A triggered'
-  },
-  actionB: function () {
-    this.state.message = 'action B triggered'
   }
 }
 
@@ -26,8 +20,9 @@ var UserView = new Vue({
     el: '#user',
     data: {
         shared: store.state,
-        loginUsername: 'm@m.com',
-        loginPassword: 'mm'
+        loginEmail: '',
+        loginPassword: '',
+        displayRegistration: false
     },
     methods: userController
 });

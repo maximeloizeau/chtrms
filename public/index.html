@@ -8,10 +8,17 @@
     <div id="app">
         <div id="user">
             <div id="logo"></div>
-            <div id="login-box" v-show="shared.user === undefined">
-                <input type="text" v-model="loginUsername" placeholder="username" v-on:keyup.enter="login" />
+            <div id="login-box" v-show="shared.user === undefined && displayRegistration === false">
+                <input type="text" v-model="loginEmail" placeholder="email" v-on:keyup.enter="login" />
                 <input type="password" v-model="loginPassword" placeholder="password" v-on:keyup.enter="login" />
+                <span class="open-registration" v-on:click="openRegistration">Register ?</span>
             </div>
+            <div id="registration-box" v-show="displayRegistration === true">
+                <input type="text" v-model="registerUsername" placeholder="username" />
+                <input type="email" v-model="registerEmail" placeholder="email" />
+                <input type="password" v-model="registerPassword" placeholder="password" v-on:keyup.enter="register" />
+            </div>
+
             <div id="user-profile" v-show="shared.user !== undefined">
                 <span class="username">{{ shared.user.username }}</span>
                 <span class="username">({{ shared.user.email }})</span>
