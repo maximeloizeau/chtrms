@@ -6,14 +6,14 @@
 
 Finally I decided to just use socket.io to communicate in realtime with clients since it provides rooms and such.
 
-* 8 to 10 hours - to design (data model, functionalities breakdown on paper) and build the service backend + front.
-I decided to use a lightweight view framework for the Javascript so I "lost" some time to learn how to use it (which was interesting, I found it similar to Angular.js philosphy)
+* 9 to 11 hours - to design (data model, functionalities breakdown on paper) and build the service backend + front.
+I decided to use a lightweight view framework for the Javascript so I spent some time to learn how to use it (which was interesting, I found it similar to the Angular.js philosphy)
 
 ## What would you add to your solution if you had more time?
 
 I always wanted to add more functionnalities but I thought I should stop at some point. My solution could use all of this :
 * Save user webtoken to localstorage so they don't have to reconnect each time they open the page
-* Take more time to think about the UI (to make it more modern) and adjust some issues : scrolling issue in the messages area
+* Take more time to think about the UI (to make it more modern, and more usable) and adjust some issues : scrolling issue in the messages area. And change the "Enter to confirm login/registration" with a button.
 * Do a real error management on client side. At least, displaying that there was an error.
 * CODE TESTING ! I made a stub of unit testing of some functions (user log in/out) but didn't take time to do a better coverage
 * DOCUMENTATION
