@@ -21,7 +21,7 @@ function create(event) {
 
         // If we don't have an active connection, we add the room ourselves
         if(!self.shared.socket) {
-            self.shared.rooms.push(self.roomName);
+            self.shared.rooms.push({ name: self.roomName});
         }
 
         self.roomName = '';
